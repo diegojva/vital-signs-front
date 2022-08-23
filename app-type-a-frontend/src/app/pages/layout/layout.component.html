@@ -1,0 +1,62 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon *ngIf="!sidenav.opened">menu_open</mat-icon>
+          <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+      </button>
+
+      <h1 class="example-app-name">VITAL SIGNS</h1>
+
+      <span class="example-spacer"></span>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/pages/dashboard">
+              <mat-icon>account_box</mat-icon>
+              <span>My account</span>
+          </button>
+          <button mat-menu-item (click)="sidenav.opened = false" (click)="logout()" >
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Logout</span>
+          </button>
+      </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+      <mat-sidenav #sidenav style="width: 200px" mode="over">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR71943I-pPnCd9O9qCiioiC_jb6H0_z0mWLw&usqp=CAU" width="128" style="margin-left: 20px">
+
+          <div *ngFor="let m of menus">
+            <button mat-menu-item (click)="sidenav.toggle()" routerLink="{{m.url}}" style="cursor: pointer">
+              <mat-icon>{{m.icon}}</mat-icon>
+              <span>{{m.name}}</span>
+            </button>
+            <mat-divider></mat-divider>
+          </div>
+
+         <!-- <button mat-menu-item (click)="sidenav.toggle()" routerLink="/pages/search" style="cursor: pointer">
+              <mat-icon>search</mat-icon>
+              <span>Search</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="sidenav.toggle()" routerLink="/pages/vital-signs" style="cursor: pointer">
+              <mat-icon>favorite</mat-icon>
+              <span>Vital Signs</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="sidenav.toggle()" routerLink="/pages/patient" style="cursor: pointer">
+              <mat-icon>emoji_people</mat-icon>
+              <span>Patient</span>
+          </button>-->
+          <mat-divider></mat-divider>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>

@@ -1,0 +1,51 @@
+<form class="example-container" [formGroup]="form" #frmPatient="ngForm" (submit)="operate()">
+
+  <div [hidden]="true">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="ID" required formControlName="idPatient">
+      </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="FirstName" minlength="3" required formControlName="firstName">
+      <small *ngIf="f['firstName'].errors?.['required'] && f['firstName'].touched" class="invalid">Is required</small>
+      <small *ngIf="f['firstName'].errors?.['minlength'] && f['firstName'].touched" class="invalid">Minlength is 2</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="LastName" minlength="3" required formControlName="lastName">
+      <small *ngIf="f['lastName'].errors?.['required'] && f['lastName'].touched" class="invalid">Is required</small>
+      <small *ngIf="f['lastName'].errors?.['minlength'] && f['lastName'].touched" class="invalid">Minlength is 2</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="DNI" maxlength="8" required formControlName="dni">
+      <small *ngIf="f['dni'].errors?.['required'] && f['dni'].touched" class="invalid">Is required</small>
+      <small *ngIf="f['dni'].errors?.['maxlength'] && f['dni'].touched" class="invalid">maxLength is 8</small>
+      <small *ngIf="f['dni'].errors?.['minlength'] && f['dni'].touched" class="invalid">Minlength is 8</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="phone" maxlength="9" required formControlName="phone">
+      <small *ngIf="f['phone'].errors?.['required'] && f['phone'].touched" class="invalid">Is required</small>
+      <small *ngIf="f['phone'].errors?.['maxlength'] && f['phone'].touched" class="invalid">maxLength is 9</small>
+      <small *ngIf="f['phone'].errors?.['minlength'] && f['phone'].touched" class="invalid">Minlength is 9</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="email" required formControlName="email">
+      <small *ngIf="f['email'].errors?.['required'] && f['email'].touched" class="invalid">Is required</small>
+      <small *ngIf="f['email'].errors?.['email'] && f['email'].touched" class="invalid">Format incorret</small>
+
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="frmPatient.invalid">
+      <mat-icon>done</mat-icon>
+      <span>Done</span>
+  </button>
+
+  <button mat-raised-button color="accent" type="button" (click)="close()"><!--routerLink="/pages/patient"-->
+      <mat-icon>cancel</mat-icon>
+      <span>Cancel</span>
+  </button>
+</form>
